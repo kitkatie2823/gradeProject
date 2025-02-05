@@ -11,7 +11,7 @@
 
     <EditText
         android:id="@+id/enter_grade"
-        android:layout_width="wrap_content"
+        android:layout_width="237dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
@@ -28,11 +28,10 @@
         android:text="Grade" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/gradeDisplay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_margin="16dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:layout_margin="16dp" />
 
 </LinearLayout>

@@ -14,26 +14,50 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         val grade_button = findViewById<Button>(R.id.grade_button)
         grade_button.setOnClickListener {
             val enter_grade = findViewById<EditText>(R.id.enter_grade)
-            val input_grade = enter_grade.getText().toString()
-            val grade_int = Integer.parseInt(input_grade) //this is our grade in Integer form
+            val input_grade = enter_grade.text.toString().trim()
+
+            // Check if the input is empty
+            if (input_grade.isEmpty()) {
+                val gradeDisplay = findViewById<TextView>(R.id.gradeDisplay)
+                gradeDisplay.text = "Please enter a valid grade."
+                return@setOnClickListener
+            }
+
+                val grade_int = input_grade.toInt() // Convert input to integer
+                val grade_Letter = getGrade(grade_int) // Determine grade letter
+                val gradeDisplay = findViewById<TextView>(R.id.gradeDisplay)
+
+                if (enter_grade != null) { // Check if enter_grade is not null
+                    gradeDisplay.text = "You got grade " + grade_Letter
+                }
         }
     }
 
-    fun getGrade(int: Int) {
-        return when (int)
-        {
-
+    // Function to determine grade letter based on integer input
+    fun getGrade(grade_int: Int): String {
+        return when {
+            grade_int in 94..100 -> "A" // A grade 94 - 100
+            grade_int in 90..93 -> "A-" // A- grade 90 - 93
+            grade_int in 87..89 -> "B+" // B+ grade 87 - 89
+            grade_int in 83..86 -> "B"  // B grade 83 - 86
+            grade_int in 80..82 -> "B-" // B- grade 80 - 82
+            grade_int in 77..79 -> "C+" // C+ grade 77 - 79
+            grade_int in 73..76 -> "C"  // C grade 73 - 76
+            grade_int in 70..72 -> "C-" // C- grade 70 - 72
+            else -> "F" // Anything below 70 is an F
         }
     }
 }
 
-//big if for A, B, C, or F
-// Small inner if for whether it's + or - or regular letter
+// Big if for A, B, C, or F
+// Small inner if for whether it's +, -, or regular letter
