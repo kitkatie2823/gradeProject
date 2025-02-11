@@ -1,6 +1,7 @@
 package com.example.assignment11standroidapp
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
@@ -17,6 +18,22 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
 
+        //For ListView of Names, Department, Year
+        val names = resources.getStringArray(R.array.student)
+        val departments = resources.getStringArray(R.array.student_departments)
+        val years = resources.getStringArray(R.array.student_years)
+
+        val studentList = mutableListOf<String>()
+        for (i in names.indices) {
+            studentList.add("${names[i]} - ${departments[i]} - ${years[i]}")
+        }
+
+        //Find ListView and set adapter
+        val listView = findViewById<ListView>(R.id.student_listView)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1,studentList)
+        listView.adapter = adapter
+        // ListView ends here
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -25,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
         val grade_button = findViewById<Button>(R.id.grade_button)
         grade_button.setOnClickListener {
-            val enter_grade = findViewById<EditText>(R.id.enter_grade)
-            val input_grade = enter_grade.text.toString().trim()
+           val enter_grade = findViewById<EditText>(R.id.enter_grade)
+           val input_grade = enter_grade.text.toString().trim()
 
             // Check if the input is empty
             if (input_grade.isEmpty()) {
@@ -44,16 +61,6 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        val findStudent = findViewById<ListView>(R.id.student_listView)
-        findStudent.setOnClickListener {
-//            val beerColor = findViewById<Spinner>(R.id.beer_color)
-//            val color = beerColor.selectedItem
-//            val beerList = getBeers(color.toString())
-//            val beers = beerList.reduce{ str, item -> str + '\n' + item }
-//            val brands = findViewById<TextView>(R.id.brands)
-//            brands.text = beers //this displays a list of different beers that correspond to specific colors
-            //brands.text = "Beer color is $color" //this shows the color corresponding to the selected item color
-        }
     }
 
     // Function to determine grade letter based on integer input

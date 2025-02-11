@@ -34,7 +34,9 @@
         android:layout_margin="16dp"
         android:layout_marginTop="200dp"
         android:ems="10"
-        android:inputType="number" />
+        android:hint="Enter Number (0 - 100)"
+        android:inputType="number"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/grade_button"

@@ -4,4 +4,14 @@
         <item>Catherine Yabut</item>
         <item>Katie Trinh</item>
     </string-array>
+
+    <string-array name="student_departments">
+        <item>Computer Science</item>
+        <item>Computer Science</item>
+    </string-array>
+    
+    <string-array name="student_years">
+        <item>4th Year</item>
+        <item>5th Year</item>
+    </string-array>
 </resources>
