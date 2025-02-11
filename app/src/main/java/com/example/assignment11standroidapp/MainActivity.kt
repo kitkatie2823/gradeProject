@@ -3,6 +3,8 @@ package com.example.assignment11standroidapp
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ListView
+import android.widget.Spinner
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -41,6 +43,17 @@ class MainActivity : AppCompatActivity() {
                     gradeDisplay.text = "You got grade " + grade_Letter
                 }
         }
+
+        val findStudent = findViewById<ListView>(R.id.student_listView)
+        findStudent.setOnClickListener {
+//            val beerColor = findViewById<Spinner>(R.id.beer_color)
+//            val color = beerColor.selectedItem
+//            val beerList = getBeers(color.toString())
+//            val beers = beerList.reduce{ str, item -> str + '\n' + item }
+//            val brands = findViewById<TextView>(R.id.brands)
+//            brands.text = beers //this displays a list of different beers that correspond to specific colors
+            //brands.text = "Beer color is $color" //this shows the color corresponding to the selected item color
+        }
     }
 
     // Function to determine grade letter based on integer input
@@ -55,6 +68,14 @@ class MainActivity : AppCompatActivity() {
             grade_int in 73..76 -> "C"  // C grade 73 - 76
             grade_int in 70..72 -> "C-" // C- grade 70 - 72
             else -> "F" // Anything below 70 is an F
+        }
+    }
+
+    fun getStudent(student: String) : List<String> {
+        return when (student) {
+            "Catherine Yabut" -> listOf("CIS", "4th Year")
+            "Katie Trinh" -> listOf("CS", "4th Year")
+            else -> listOf("unknown", "unknown")
         }
     }
 }

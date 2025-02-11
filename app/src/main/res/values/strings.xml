@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Assignment1_NAME_NAME</string>
+    <string-array name="student">
+        <item>Catherine Yabut</item>
+        <item>Katie Trinh</item>
+    </string-array>
 </resources>
